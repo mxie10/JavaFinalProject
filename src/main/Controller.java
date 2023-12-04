@@ -228,7 +228,7 @@ public class Controller {
 		player.setName(name);
 		String difficulty = "";
 		
-		while(!difficulty.equals("e") && !difficulty.equals("h")) {
+		while(!difficulty.toLowerCase().equals("e") && !difficulty.toLowerCase().equals("h")) {
 			System.out.println("Please Select Game Difficulty");
 			System.out.println("Press \"e\" for Easy");
 			System.out.println("press \"h\" for Hard");
@@ -264,7 +264,7 @@ public class Controller {
 		System.out.println("Type \"yes\" to confirm the answer, type \"no\" to choose the answer again");
 		String confirm = scanner.nextLine();
 		
-		while(!confirm.equals("yes")) {
+		while(!confirm.toLowerCase().equals("yes")) {
 			System.out.println("Please Choose Your Answer");
 			answer = scanner.nextLine();
 			System.out.println("Are you sure this is the correct answer?");
