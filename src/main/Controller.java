@@ -374,7 +374,7 @@ public class Controller {
 		question.getOptions().add(tempList.get(0));
 		
 		for(int i=0;i<lifelineList.size();i++) {
-			if(lifelineList.get(i) == "2") {
+			if(lifelineList.get(i).equals("2")) {
 				lifelineList.remove(i);
 				break;
 			}
