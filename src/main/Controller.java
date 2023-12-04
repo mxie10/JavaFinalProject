@@ -426,7 +426,7 @@ public class Controller {
 	//pause for a while
 	public static void pause() {
         try {
-            Thread.sleep(20); // 暂停50毫秒
+            Thread.sleep(20); 
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
