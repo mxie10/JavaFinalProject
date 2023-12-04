@@ -10,6 +10,8 @@ public class Controller {
 	
 	private List<Question> questionList;
 	private Map<String, Integer> questionOptionToSNMap;
+	private Map<Integer, Integer> easyDifficultPrizeMap;
+	private Map<Integer, Integer> hardDifficultPrizeMap;
 	private Player player;
 	private Scanner scanner;
 	private Random random;
@@ -22,9 +24,12 @@ public class Controller {
 	private List<String> lifelineList;
 	private boolean ifIslastQuestion;
 	
-	public Controller(List<Question> questionList, Map<String, Integer> questionOptionToSNMap) {
+	public Controller(List<Question> questionList, Map<String, Integer> questionOptionToSNMap,
+			Map<Integer, Integer> easyDifficultPrizeMap,Map<Integer, Integer> hardDifficultPrizeMap) {
 		this.questionList = questionList;
 		this.questionOptionToSNMap = questionOptionToSNMap;
+		this.easyDifficultPrizeMap = easyDifficultPrizeMap;
+		this.hardDifficultPrizeMap = hardDifficultPrizeMap;
 		this.player = new Player("",0,false,false,false);
 		this.scanner = new Scanner(System.in);
 		this.random = new Random();
@@ -36,6 +41,22 @@ public class Controller {
 		this.quit = false;
 		this.lifelineList = new ArrayList<>(List.of("2","3","4"));
 		this.ifIslastQuestion = false;
+	}
+
+	public Map<Integer, Integer> getEasyDifficultPrizeMap() {
+		return easyDifficultPrizeMap;
+	}
+
+	public void setEasyDifficultPrizeMap(Map<Integer, Integer> easyDifficultPrizeMap) {
+		this.easyDifficultPrizeMap = easyDifficultPrizeMap;
+	}
+
+	public Map<Integer, Integer> getHardDifficultPrizeMap() {
+		return hardDifficultPrizeMap;
+	}
+
+	public void setHardDifficultPrizeMap(Map<Integer, Integer> hardDifficultPrizeMap) {
+		this.hardDifficultPrizeMap = hardDifficultPrizeMap;
 	}
 
 	public Map<String, Integer> getQuestionOptionToSNMap() {
@@ -236,7 +257,7 @@ public class Controller {
 	
 	//Answer the question, also need to check if current question is the last one in current round
 	//if it is, then based on the player's answer to decide whether continue to next round or end the game here.
-	public boolean answerQuestion(Question question, boolean lastQuestion) {
+	public boolean answerQuestion(Question question, boolean lastQuestion, int questionIndex) {
 		System.out.println("Please choose your answer");
 		String answer = scanner.nextLine();
 		System.out.println("Are you sure this is the correct answer?");
@@ -252,14 +273,16 @@ public class Controller {
 		}
 		if(answer.toUpperCase().equals(question.getCorrectAnswer())) {
 			System.out.println("Correct!");
-			player.increasePrize(1);
+			int currentPrize = difficultyLevel == 0 ? getEasyDifficultPrizeMap().get((currentRound-1)*3+questionIndex)
+					:getHardDifficultPrizeMap().get((currentRound-1)*5+questionIndex);
+			player.setPrize(currentPrize);
+			System.out.println("You have won $" + player.getPrize() + " dollars!");
 			return decideWhetherContinueOrNot(lastQuestion);
 		}else {
 			System.out.println("Wrong Answer! Game Over!");
 			//set player's total prize to 0;
 			quit = true;
 			player.setPrize(0);
-			player.getPrize();
 			return false;
 		}
 	}
@@ -277,7 +300,6 @@ public class Controller {
 		if(continueOrNot.equals("yes")) { 
 			return true;
 		}
-		player.getPrize();
 		quit = true;
 		return false;
 	}
@@ -317,24 +339,24 @@ public class Controller {
 			}
 			
 			if(command.equals("1")) {
-				boolean res = answerQuestion(question,ifIslastQuestion);
+				boolean res = answerQuestion(question,ifIslastQuestion,i+1);
 				if(res) continue;
 				return;
 			}else {
 				if(command.equals("2")) {
-					if(!usefiftyfifty(question)) {
+					if(!usefiftyfifty(question,i+1)) {
 						return;
 					}
 				}else if(command.equals("3")) {
-					useAskTheAudience(question);
+					useAskTheAudience(question,i+1);
 				}else if(command.equals("4")) {
-					usePhoneAFriend(question);
+					usePhoneAFriend(question,i+1);
 				}
 			}
 		}
 	}
 
-	public boolean usefiftyfifty(Question question) {
+	public boolean usefiftyfifty(Question question, int questionIndex) {
 		System.out.println("");
 		System.out.println("Into 50/50");
 		String correctAnwser = question.getCorrectAnswer();
@@ -363,11 +385,11 @@ public class Controller {
 			System.out.println(question.getOptions().get(i));
 		}
 		player.setLifeline_fifty_fifty(true);
-		return answerQuestion(question,ifIslastQuestion);
+		return answerQuestion(question,ifIslastQuestion,questionIndex);
 	}
 	
 	//Please work on this method.
-	public boolean useAskTheAudience(Question question) {
+	public boolean useAskTheAudience(Question question,int questionIndex) {
 		System.out.println("");
 		int audienceNumber;
 		System.out.println("Into Ask the Audience");
@@ -394,11 +416,11 @@ public class Controller {
 		System.out.println(d+" Audiences Chose D");
 		
 		player.setLifeline_ask_audience(true);
-		return answerQuestion(question,ifIslastQuestion);
+		return answerQuestion(question,ifIslastQuestion,questionIndex);
 	}
 	
 	//Please work on this method.
-	public void usePhoneAFriend(Question question) {
+	public void usePhoneAFriend(Question question,int questionIndex) {
 		System.out.println("");
 		System.out.println("Phone a Friend");
 	}

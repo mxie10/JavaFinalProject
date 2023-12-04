@@ -27,7 +27,6 @@ public class Player {
 	}
 	
 	public double getPrize() {
-		System.out.println("Prize: " + prize);
 		return prize;
 	}
 	
@@ -35,9 +34,6 @@ public class Player {
 		this.prize = prize;
 	}
 	
-	public void increasePrize(int point) {
-		prize = prize + point;
-	}
 	
 	public boolean isLifeline_fifty_fifty() {
 		return lifeline_fifty_fifty;

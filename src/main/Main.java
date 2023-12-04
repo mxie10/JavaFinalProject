@@ -11,6 +11,8 @@ public class Main {
 	
 	private static List<Question> questionList = new ArrayList<>();
 	private static Map<String, Integer> questionOptionToSNMap = new HashMap<>();
+	private static Map<Integer, Integer> easyDifficultPrizeMap = new HashMap<>();
+	private static Map<Integer, Integer> hardDifficultPrizeMap = new HashMap<>();
 	
 	public static void initializeQuestion() {
 		questionList.add(new Question("What is the largest mammal in the world?", List.of("A. Elephant", "B. Blue Whale", "C. Giraffe", "D. Gorilla"), "B")); 
@@ -49,11 +51,44 @@ public class Main {
 	}
 	
 	
+	public static void initializeEasyDifficultPrizeMap() {
+		easyDifficultPrizeMap.put(1, 100);
+		easyDifficultPrizeMap.put(2, 500);
+		easyDifficultPrizeMap.put(3, 1000);
+		easyDifficultPrizeMap.put(4, 8000);
+		easyDifficultPrizeMap.put(5, 16000);
+		easyDifficultPrizeMap.put(6, 32000);
+		easyDifficultPrizeMap.put(7, 125000);
+		easyDifficultPrizeMap.put(8, 500000);
+		easyDifficultPrizeMap.put(9, 1000000);
+		
+	}
+	
+	public static void initializehardDifficultPrizeMap() {
+		hardDifficultPrizeMap.put(1, 100);
+		hardDifficultPrizeMap.put(2, 200);
+		hardDifficultPrizeMap.put(3, 300);
+		hardDifficultPrizeMap.put(4, 500);
+		hardDifficultPrizeMap.put(5, 1000);
+		hardDifficultPrizeMap.put(6, 2000);
+		hardDifficultPrizeMap.put(7, 4000);
+		hardDifficultPrizeMap.put(8, 8000);
+		hardDifficultPrizeMap.put(9, 16000);
+		hardDifficultPrizeMap.put(10, 32000);
+		hardDifficultPrizeMap.put(11, 64000);
+		hardDifficultPrizeMap.put(12, 125000);
+		hardDifficultPrizeMap.put(13, 250000);
+		hardDifficultPrizeMap.put(14, 500000);
+		hardDifficultPrizeMap.put(15, 1000000);	
+	}
+	
 	public static void main(String[] args) {
 		
 		initializeQuestion();
 		initializeQuestionAnsSN();
-		Controller controller = new Controller(questionList,questionOptionToSNMap);
+		initializeEasyDifficultPrizeMap();
+		initializehardDifficultPrizeMap();
+		Controller controller = new Controller(questionList,questionOptionToSNMap,easyDifficultPrizeMap,hardDifficultPrizeMap);
 		
 		//begin step1
 		controller.step1_lanuchScreen();
@@ -67,16 +102,19 @@ public class Main {
 		
 		//start playing the game, 0 is easy, 1 is difficult
 		int playRound = controller.getDifficultyLevel() == 0 ? 3 : 5;
-		for(int i=0; i<playRound; i++) {
+		for(int i=1; i<=playRound; i++) {
 			controller.play();
 			if(controller.isQuit()) {
-				System.out.println("Game Over!");
 				//show the final prize;
+				System.out.println("------------------------------------------------------------------------------------------------------------------------------");
+			    System.out.println("Your final prize is:$" + controller.getPlayer().getPrize());
 				return;
 			}
-			controller.setCurrentRound(i+2);
-		}
+			controller.setCurrentRound(i+1);
+		}	
 		
-	}
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("Your final prize is:$" + controller.getPlayer().getPrize());
 
+	}
 }
