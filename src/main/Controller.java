@@ -10,8 +10,8 @@ public class Controller {
 	
 	private List<Question> questionList;
 	private Map<String, Integer> questionOptionToSNMap;
-	private Map<Integer, Integer> easyDifficultPrizeMap;
-	private Map<Integer, Integer> hardDifficultPrizeMap;
+	private Map<Integer, Integer> easyDifficultyPrizeMap;
+	private Map<Integer, Integer> hardDifficultyPrizeMap;
 	private Player player;
 	private Scanner scanner;
 	private Random random;
@@ -28,8 +28,8 @@ public class Controller {
 			Map<Integer, Integer> easyDifficultPrizeMap,Map<Integer, Integer> hardDifficultPrizeMap) {
 		this.questionList = questionList;
 		this.questionOptionToSNMap = questionOptionToSNMap;
-		this.easyDifficultPrizeMap = easyDifficultPrizeMap;
-		this.hardDifficultPrizeMap = hardDifficultPrizeMap;
+		this.easyDifficultyPrizeMap = easyDifficultPrizeMap;
+		this.hardDifficultyPrizeMap = hardDifficultPrizeMap;
 		this.player = new Player("",0,false,false,false);
 		this.scanner = new Scanner(System.in);
 		this.random = new Random();
@@ -44,19 +44,19 @@ public class Controller {
 	}
 
 	public Map<Integer, Integer> getEasyDifficultPrizeMap() {
-		return easyDifficultPrizeMap;
+		return easyDifficultyPrizeMap;
 	}
 
 	public void setEasyDifficultPrizeMap(Map<Integer, Integer> easyDifficultPrizeMap) {
-		this.easyDifficultPrizeMap = easyDifficultPrizeMap;
+		this.easyDifficultyPrizeMap = easyDifficultPrizeMap;
 	}
 
 	public Map<Integer, Integer> getHardDifficultPrizeMap() {
-		return hardDifficultPrizeMap;
+		return hardDifficultyPrizeMap;
 	}
 
 	public void setHardDifficultPrizeMap(Map<Integer, Integer> hardDifficultPrizeMap) {
-		this.hardDifficultPrizeMap = hardDifficultPrizeMap;
+		this.hardDifficultyPrizeMap = hardDifficultPrizeMap;
 	}
 
 	public Map<String, Integer> getQuestionOptionToSNMap() {

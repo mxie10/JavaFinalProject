@@ -11,8 +11,8 @@ public class Main {
 	
 	private static List<Question> questionList = new ArrayList<>();
 	private static Map<String, Integer> questionOptionToSNMap = new HashMap<>();
-	private static Map<Integer, Integer> easyDifficultPrizeMap = new HashMap<>();
-	private static Map<Integer, Integer> hardDifficultPrizeMap = new HashMap<>();
+	private static Map<Integer, Integer> easyDifficultyPrizeMap = new HashMap<>();
+	private static Map<Integer, Integer> hardDifficultyPrizeMap = new HashMap<>();
 	
 	public static void initializeQuestion() {
 		questionList.add(new Question("What is the largest mammal in the world?", List.of("A. Elephant", "B. Blue Whale", "C. Giraffe", "D. Gorilla"), "B")); 
@@ -52,34 +52,34 @@ public class Main {
 	
 	
 	public static void initializeEasyDifficultPrizeMap() {
-		easyDifficultPrizeMap.put(1, 100);
-		easyDifficultPrizeMap.put(2, 500);
-		easyDifficultPrizeMap.put(3, 1000);
-		easyDifficultPrizeMap.put(4, 8000);
-		easyDifficultPrizeMap.put(5, 16000);
-		easyDifficultPrizeMap.put(6, 32000);
-		easyDifficultPrizeMap.put(7, 125000);
-		easyDifficultPrizeMap.put(8, 500000);
-		easyDifficultPrizeMap.put(9, 1000000);
+		easyDifficultyPrizeMap.put(1, 100);
+		easyDifficultyPrizeMap.put(2, 500);
+		easyDifficultyPrizeMap.put(3, 1000);
+		easyDifficultyPrizeMap.put(4, 8000);
+		easyDifficultyPrizeMap.put(5, 16000);
+		easyDifficultyPrizeMap.put(6, 32000);
+		easyDifficultyPrizeMap.put(7, 125000);
+		easyDifficultyPrizeMap.put(8, 500000);
+		easyDifficultyPrizeMap.put(9, 1000000);
 		
 	}
 	
 	public static void initializehardDifficultPrizeMap() {
-		hardDifficultPrizeMap.put(1, 100);
-		hardDifficultPrizeMap.put(2, 200);
-		hardDifficultPrizeMap.put(3, 300);
-		hardDifficultPrizeMap.put(4, 500);
-		hardDifficultPrizeMap.put(5, 1000);
-		hardDifficultPrizeMap.put(6, 2000);
-		hardDifficultPrizeMap.put(7, 4000);
-		hardDifficultPrizeMap.put(8, 8000);
-		hardDifficultPrizeMap.put(9, 16000);
-		hardDifficultPrizeMap.put(10, 32000);
-		hardDifficultPrizeMap.put(11, 64000);
-		hardDifficultPrizeMap.put(12, 125000);
-		hardDifficultPrizeMap.put(13, 250000);
-		hardDifficultPrizeMap.put(14, 500000);
-		hardDifficultPrizeMap.put(15, 1000000);	
+		hardDifficultyPrizeMap.put(1, 100);
+		hardDifficultyPrizeMap.put(2, 200);
+		hardDifficultyPrizeMap.put(3, 300);
+		hardDifficultyPrizeMap.put(4, 500);
+		hardDifficultyPrizeMap.put(5, 1000);
+		hardDifficultyPrizeMap.put(6, 2000);
+		hardDifficultyPrizeMap.put(7, 4000);
+		hardDifficultyPrizeMap.put(8, 8000);
+		hardDifficultyPrizeMap.put(9, 16000);
+		hardDifficultyPrizeMap.put(10, 32000);
+		hardDifficultyPrizeMap.put(11, 64000);
+		hardDifficultyPrizeMap.put(12, 125000);
+		hardDifficultyPrizeMap.put(13, 250000);
+		hardDifficultyPrizeMap.put(14, 500000);
+		hardDifficultyPrizeMap.put(15, 1000000);	
 	}
 	
 	public static void main(String[] args) {
@@ -88,7 +88,7 @@ public class Main {
 		initializeQuestionAnsSN();
 		initializeEasyDifficultPrizeMap();
 		initializehardDifficultPrizeMap();
-		Controller controller = new Controller(questionList,questionOptionToSNMap,easyDifficultPrizeMap,hardDifficultPrizeMap);
+		Controller controller = new Controller(questionList,questionOptionToSNMap,easyDifficultyPrizeMap,hardDifficultyPrizeMap);
 		
 		//begin step1
 		controller.step1_lanuchScreen();
