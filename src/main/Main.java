@@ -36,7 +36,7 @@ public class Main {
 		questionList.add(new Question("In which year did the Titanic sink?", List.of("A. 1905", "B. 1912", "C. 1920", "D. 1931"), "B"));
 		questionList.add(new Question("Who wrote 'The Great Gatsby'?", List.of("A. Ernest Hemingway", "B. F. Scott Fitzgerald", "C. Jane Austen", "D. George Orwell"), "B"));
 		questionList.add(new Question("What is the currency of China?", List.of("A. Yen", "B. Won", "C. Yuan", "D. Ringgit"), "C"));
-		questionList.add(new Question("What is the capital of France?", List.of("Paris", "Marseille", "Lyon", "Roman"), "A"));
+		questionList.add(new Question("What is the capital of France?", List.of("A. Paris", "B. Marseille", "C. Lyon", "D. Roman"), "A"));
 		questionList.add(new Question("Who is the author of '1984'?", List.of("A. George Orwell", "B. Aldous Huxley", "C. Ray Bradbury", "D. J.D. Salinger"), "A"));
 		
 	}
