@@ -393,31 +393,44 @@ public class Controller {
 		System.out.println("");
 		int audienceNumber;
 		System.out.println("Into Ask the Audience");
-		int a = 0;
-		int b = 0;
-		int c = 0;
-		int d = 0;
-		//assume we have 400 audiences
-		for(int i=0;i<400;i++) {
-			audienceNumber = random.nextInt(100);
-			if(audienceNumber>=0 && audienceNumber<25) {
-				a+=1;
-			}else if(audienceNumber>=25 && audienceNumber<50) {
-				b+=1;
-			}else if(audienceNumber>=50 && audienceNumber<75) {
-				c+=1;
+		int[] votes = new int[4];
+		//assume we have 50 audiences
+		for(int i=0;i<50;i++) {
+			audienceNumber = random.nextInt(50);
+			if(audienceNumber>=0 && audienceNumber<10) {
+				votes[0]++;
+			}else if(audienceNumber>=10 && audienceNumber<25) {
+				votes[1]++;
+			}else if(audienceNumber>=25 && audienceNumber<40) {
+				votes[2]++;
 			}else {
-				d+=1;
+				votes[3]++;
 			}
+			displayVotes(votes);
+			pause();
 		}
-		System.out.println(a+" Audiences Chose A");
-		System.out.println(b+" Audiences Chose B");
-		System.out.println(c+" Audiences Chose C");
-		System.out.println(d+" Audiences Chose D");
-		
 		player.setLifeline_ask_audience(true);
 		return answerQuestion(question,ifIslastQuestion,questionIndex);
 	}
+	
+	//displayVotes
+	public static void displayVotes(int[] votes) {
+        System.out.println("Current Votes:");
+        for (int i = 0; i < votes.length; i++) {
+            char option = (char) ('A' + i);
+            System.out.println(votes[i] + " audiences chose " + option);
+        }
+        System.out.println("--------------");
+    }
+	
+	//pause for a while
+	public static void pause() {
+        try {
+            Thread.sleep(20); // 暂停50毫秒
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 	
 	//Please work on this method.
 	public void usePhoneAFriend(Question question,int questionIndex) {
