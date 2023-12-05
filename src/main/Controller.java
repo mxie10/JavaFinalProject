@@ -289,6 +289,7 @@ public class Controller {
 	
 	//Check whether continue or not
 	public boolean decideWhetherContinueOrNot(boolean lastQuestion) {
+		if(currentRound == 3) return true;
 		String continueOrNot = "";
 		if(lastQuestion != true) {
 			System.out.println("Do you want to continue? Input \"yes\" to continue, \"no\" to exit the game");
@@ -363,9 +364,7 @@ public class Controller {
 		int serialNumber = questionOptionToSNMap.get(correctAnwser);
 		
 		int count = 0;
-		
-		System.out.println("serialNumber is:"+serialNumber);
-					
+							
 		//list operations
 		List<String> tempList = new ArrayList<>();
 		tempList.add(question.getOptions().remove(serialNumber));
