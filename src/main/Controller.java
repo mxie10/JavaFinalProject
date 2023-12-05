@@ -434,10 +434,12 @@ public class Controller {
 	
 	//Please work on this method.
 	public boolean usePhoneAFriend(Question question,int questionIndex) {
+
+		//setting up the friends
 		String f1Name = "Alice";
 		int f1Luck = random.nextInt(101);
 		int f1Intel = random.nextInt(101);
-
+		
 		String f2Name = "Bob";
 		int f2Luck = random.nextInt(101);
 		int f2Intel = random.nextInt(101);
@@ -456,11 +458,12 @@ public class Controller {
 		System.out.println(
 				"------------------------------------------------------------------------------------------------------------------------------");
 		System.out.println("Pick your Friend: (1/2)");
-		String friend = scanner.nextLine();
+		int friend = scanner.nextInt();
+		System.out.println(friend);
 
-		while (!friend.equals("1") || !friend.equals("2")) {
+		while (!(friend == 1 || friend == 2)) {
 			System.out.println("Please pick a friend that is avaliable: (1/2)");
-			friend = scanner.nextLine();
+			friend = scanner.nextInt();
 		}
 
 		String fName = "";
@@ -471,7 +474,7 @@ public class Controller {
 		int lucky = random.nextInt(101);
 
 		switch(friend){
-			case "1":
+			case 1:
 
 			fName = f1Name;
 
@@ -495,7 +498,7 @@ public class Controller {
 			}
 			break;
 
-			case "2":
+			case 2:
 
 			fName = f2Name;
 
