@@ -439,7 +439,7 @@ public class Controller {
 		String f1Name = "Alice";
 		int f1Luck = random.nextInt(101);
 		int f1Intel = random.nextInt(101);
-		
+
 		String f2Name = "Bob";
 		int f2Luck = random.nextInt(101);
 		int f2Intel = random.nextInt(101);
@@ -459,7 +459,6 @@ public class Controller {
 				"------------------------------------------------------------------------------------------------------------------------------");
 		System.out.println("Pick your Friend: (1/2)");
 		int friend = scanner.nextInt();
-		System.out.println(friend);
 
 		while (!(friend == 1 || friend == 2)) {
 			System.out.println("Please pick a friend that is avaliable: (1/2)");
@@ -489,13 +488,10 @@ public class Controller {
 			smarty += f1Intel;
 			lucky += f1Luck;
 
-			if(smarty >= 100){
+			if(smarty >= 100 || lucky >= 100){
 				correct = true;
 			}
 
-			if(lucky >= 100){
-				correct = true;
-			}
 			break;
 
 			case 2:
@@ -510,16 +506,13 @@ public class Controller {
 				action = "think maybe";
 			}
 
-			smarty += f1Intel;
-			lucky += f1Luck;
+			smarty += f2Intel;
+			lucky += f2Luck;
 
-			if(smarty >= 100){
+			if(smarty >= 100 || lucky >= 100){
 				correct = true;
 			}
 
-			if(lucky >= 100){
-				correct = true;
-			}
 			break;
 		}
 
@@ -530,7 +523,9 @@ public class Controller {
 		} else {
 			System.out.println(fName + ": I " + action + " the correct answer is " + response[random.nextInt(4)] + ".");
 		}
+
 		player.setLifeline_phone_a_friend(true);
+		scanner.nextLine();
 		return answerQuestion(question,ifIslastQuestion,questionIndex);
 	}
 	
