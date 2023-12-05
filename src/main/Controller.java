@@ -433,8 +433,102 @@ public class Controller {
     }
 	
 	//Please work on this method.
-	public void usePhoneAFriend(Question question,int questionIndex) {
+	public boolean usePhoneAFriend(Question question,int questionIndex) {
+		String f1Name = "Alice";
+		int f1Luck = random.nextInt(101);
+		int f1Intel = random.nextInt(101);
+
+		String f2Name = "Bob";
+		int f2Luck = random.nextInt(101);
+		int f2Intel = random.nextInt(101);
+
 		System.out.println("");
 		System.out.println("Phone a Friend");
+		System.out.println(
+				"------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("1: " + f1Name);
+		System.out.println("Intelligence:" + f1Intel);
+		System.out.println("Luck:" + f1Luck);
+		System.out.println("");
+		System.out.println("2: " + f2Name);
+		System.out.println("Intelligence:" + f2Intel);
+		System.out.println("Luck:" + f2Luck);
+		System.out.println(
+				"------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Pick your Friend: (1/2)");
+		String friend = scanner.nextLine();
+
+		while (!friend.equals("1") || !friend.equals("2")) {
+			System.out.println("Please pick a friend that is avaliable: (1/2)");
+			friend = scanner.nextLine();
+		}
+
+		String fName = "";
+		boolean correct = false;
+		String action = "";
+		
+		int smarty = random.nextInt(101);
+		int lucky = random.nextInt(101);
+
+		switch(friend){
+			case "1":
+
+			fName = f1Name;
+
+			if (f1Intel > f1Luck) {
+				action = "think";
+			} else if (f1Intel < f1Luck) {
+				action = "guess";
+			} else {
+				action = "think maybe";
+			}
+
+			smarty += f1Intel;
+			lucky += f1Luck;
+
+			if(smarty >= 100){
+				correct = true;
+			}
+
+			if(lucky >= 100){
+				correct = true;
+			}
+			break;
+
+			case "2":
+
+			fName = f2Name;
+
+			if (f2Intel > f2Luck) {
+				action = "think";
+			} else if (f2Intel < f2Luck) {
+				action = "guess";
+			} else {
+				action = "think maybe";
+			}
+
+			smarty += f1Intel;
+			lucky += f1Luck;
+
+			if(smarty >= 100){
+				correct = true;
+			}
+
+			if(lucky >= 100){
+				correct = true;
+			}
+			break;
+		}
+
+		char[] response = {'A', 'B', 'C', 'D'};
+
+		if (correct == true) {
+			System.out.println(fName + ": I " + action + " the correct answer is " + question.getCorrectAnswer() + ".");
+		} else {
+			System.out.println(fName + ": I " + action + " the correct answer is " + response[random.nextInt(4)] + ".");
+		}
+		player.setLifeline_phone_a_friend(true);
+		return answerQuestion(question,ifIslastQuestion,questionIndex);
 	}
+	
 }
