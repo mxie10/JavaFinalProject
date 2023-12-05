@@ -1,10 +1,12 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Collections;
 
 public class Controller {
 	
@@ -357,7 +359,6 @@ public class Controller {
 					if(!usePhoneAFriend(question,i+1)) {
 						return;
 					}
-					
 				}
 			}
 		}
@@ -376,7 +377,12 @@ public class Controller {
 		tempList.add(question.getOptions().remove(serialNumber));
 		question.getOptions().remove(0);
 		question.getOptions().remove(0);
-		question.getOptions().add(tempList.get(0));
+		
+		if (tempList.get(0).substring(0, 1).compareTo(question.getOptions().get(0).substring(0, 1)) < 0) {
+			question.getOptions().add(0,tempList.get(0));
+		}else {
+			question.getOptions().add(tempList.get(0));
+		}
 		
 		for(int i=0;i<lifelineList.size();i++) {
 			if(lifelineList.get(i).equals("2")) {
