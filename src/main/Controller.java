@@ -350,9 +350,14 @@ public class Controller {
 						return;
 					}
 				}else if(command.equals("3")) {
-					useAskTheAudience(question,i+1);
+					if(!useAskTheAudience(question,i+1)) {
+						return;
+					}
 				}else if(command.equals("4")) {
-					usePhoneAFriend(question,i+1);
+					if(!usePhoneAFriend(question,i+1)) {
+						return;
+					}
+					
 				}
 			}
 		}
