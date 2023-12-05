@@ -85,7 +85,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		initializeQuestion();
-		initializeQuestionAnsSN();
+		initializeQuestionAnsSN(); //SN serial number
 		initializeEasyDifficultPrizeMap();
 		initializehardDifficultPrizeMap();
 		Controller controller = new Controller(questionList,questionOptionToSNMap,easyDifficultyPrizeMap,hardDifficultyPrizeMap);

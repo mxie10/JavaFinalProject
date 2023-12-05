@@ -317,6 +317,7 @@ public class Controller {
 			int randomNumber = random.nextInt(questionList.size());
 			//remove and retrieve the selected question from the list;
 			Question question = questionList.remove(randomNumber);
+			System.out.println("------------------------------------------------------------------------------------------------------------------------------");
 			System.out.println("Round "+currentRound+" Question"+(i+1));
 			System.out.println(question.getQuestionText());
 			
@@ -407,6 +408,12 @@ public class Controller {
 			}
 			displayVotes(votes);
 			pause();
+		}
+		for(int i=0;i<lifelineList.size();i++) {
+			if(lifelineList.get(i).equals("3")) {
+				lifelineList.remove(i);
+				break;
+			}
 		}
 		player.setLifeline_ask_audience(true);
 		return answerQuestion(question,ifIslastQuestion,questionIndex);
