@@ -529,7 +529,14 @@ public class Controller {
 		} else {
 			System.out.println(fName + ": I " + action + " the correct answer is " + response[random.nextInt(4)] + ".");
 		}
-
+		
+		for(int i=0;i<lifelineList.size();i++) {
+			if(lifelineList.get(i).equals("4")) {
+				lifelineList.remove(i);
+				break;
+			}
+		}
+		
 		player.setLifeline_phone_a_friend(true);
 		scanner.nextLine();
 		return answerQuestion(question,ifIslastQuestion,questionIndex);
